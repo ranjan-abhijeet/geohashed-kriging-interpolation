@@ -1,0 +1,7 @@
+__pycache__
+venv/
+.env
+input_data/*.csv
+clustered_data/*.csv
+krigged_data/*.csv
+merged_data/*.csv
