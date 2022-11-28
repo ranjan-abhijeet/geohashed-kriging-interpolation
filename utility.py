@@ -34,7 +34,6 @@ def create_clusters(input_csv_folder_path: str, output_csv_folder: str="", clust
     """
     input_file = glob.glob(f"{input_csv_folder_path}/*.csv")
     if len(input_file) == 0:
-        print("[-] Input file not found")
         return
     df = pd.read_csv(input_file[0])
     num_clusters = len(df)//cluster_size
