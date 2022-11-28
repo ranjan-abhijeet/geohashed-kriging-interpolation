@@ -34,7 +34,7 @@ def create_clusters(input_csv_folder_path: str, output_csv_folder: str="", clust
     """
     input_file = glob.glob(f"{input_csv_folder_path}/*.csv")
     if len(input_file) == 0:
-        return
+        return False
     df = pd.read_csv(input_file[0])
     num_clusters = len(df)//cluster_size
     coordinate_array = df.loc[:, ['latitude', 'longitude', 'pm2.5']]
@@ -44,7 +44,7 @@ def create_clusters(input_csv_folder_path: str, output_csv_folder: str="", clust
     for cluster in range(num_clusters):
         df_cluster = coordinate_array[coordinate_array['cluster_label'] == cluster]
         df_cluster.to_csv(f"{output_csv_folder}/{cluster}.csv", index=False)
-
+    return True
 
 def apply_kriging(input_csv_files_path: str, output_csv_files_path: str, grid_space: float=0.01):
     """
