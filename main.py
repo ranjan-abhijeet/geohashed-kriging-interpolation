@@ -12,7 +12,9 @@ def interpolate_data(
                     grid_space:float
                     ):
     utility.create_directories(project_structure)
-    utility.create_clusters(input_data, clustered_data, cluster_size)
+    if utility.create_clusters(input_data, clustered_data, cluster_size) is None:
+        print("[-] Missing input file to interpolate data")
+        return
     utility.apply_kriging(clustered_data, krigged_data, grid_space)
     utility.merge_dataframes(krigged_data, merged_data)
 
